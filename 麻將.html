@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    html{
+      width: 100%;
+      height: 100vh;
+    }
+    body{
+      width: auto;
+      height: auto;
+      margin: 0;
+      padding: 0;
+      background: rgb(38, 78, 20);
+    }
+
+    .card1 {
+      width: 60px;
+      height: 80px;
+      position: relative;
+      /* 設定子元素在3D空間內 */
+      transform-style: preserve-3d;
+      margin-top: 10px;
+      margin-left: 10px;
+      transition: transform 1s;
+      /* border: 2px solid #000; */
+    }
+    .card2 {
+      width: 60px;
+      height: 80px;
+      position: relative;
+      transform-style: preserve-3d;
+      margin-top: 10px;
+      margin-left: 10px;
+      transition: transform 1s;
+    }
+    .card3 {
+      width: 60px;
+      height: 80px;
+      position: relative;
+      transform-style: preserve-3d;
+      margin-top: 10px;
+      margin-left: 10px;
+      transition: transform 1s;
+    }
+    .card4 {
+      width: 60px;
+      height: 80px;
+      position: relative;
+      transform-style: preserve-3d;
+      margin-top: 10px;
+      margin-left: 10px;
+      transition: transform 1s;
+    }
+
+    .card-front {
+      width: 100%;
+      height: 100%;
+      background-image: url(./ma-jan/1.png);
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      position: absolute;
+      /* 把花色翻轉到下面 */
+      transform: rotateY(180deg);
+      /* 翻過來後隱藏另一面 */
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border-radius: 10px;
+    }
+
+
+    .card-back {
+      width: 100%;
+      height: 100%;
+      /* background-image: url(./撲克牌/Red_back.jpg); */
+      background: rgb(255, 165, 46);
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      position: absolute;
+      /* 翻過來後隱藏另一面 */
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border-radius: 10px;
+      box-shadow: 5px 5px 0 0 rgba(240,240,240);
+    }
+
+    .card-open {
+      transform: rotateY(180deg);
+    }
+    #game-field{
+      width: 100%;
+      height:auto ;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      /* border: 1px solid black; */
+    }
+
+    #game{
+      background: rgb(38, 78, 20);
+      width: 85%;
+      height: 800px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      overflow: hidden;
+    }
+
+    #tehai{
+      width: 85%;
+      height: 100px;
+      border: 1px solid black;
+      border-radius: 10px;
+      background:rgb(129, 94, 28);
+      position: relative;
+      display: inline-block;
+    }
+    .tehai-card1 {
+      width: 60px;
+      height: 80px;
+      position: relative;
+      margin-top: 10px;
+      margin-left: 10px;
+      transition: transform 1s;
+      border:1px solid black;
+      border-radius:10px;
+      display: inline-block;
+      transform-style: preserve-3d;
+    }
+    .tehai-card2 {
+      width: 60px;
+      height: 80px;
+      position: relative;
+      margin-top: 10px;
+      margin-left: 10px;
+      transition: transform 1s;
+      border:1px solid black;
+      border-radius:10px;
+      display: inline-block;
+      transform-style: preserve-3d;
+    }
+    .tehai-card3 {
+      width: 60px;
+      height: 80px;
+      position: relative;
+      margin-top: 10px;
+      margin-left: 10px;
+      transition: transform 1s;
+      border:1px solid black;
+      border-radius:10px;
+      display: inline-block;
+      transform-style: preserve-3d;
+    }
+    .tehai-card4 {
+      width: 60px;
+      height: 80px;
+      position: relative;
+      margin-top: 10px;
+      margin-left: 10px;
+      transition: transform 1s;
+      border:1px solid black;
+      border-radius:10px;
+      display: inline-block;
+      transform-style: preserve-3d;
+    }
+    .tehai-card5 {
+      width: 60px;
+      height: 80px;
+      position: relative;
+      margin-top: 10px;
+      margin-left: 10px;
+      transition: transform 1s;
+      border:1px solid black;
+      border-radius:10px;
+      display: inline-block;
+      transform-style: preserve-3d;
+    }
+    .tehai-card6 {
+      width: 60px;
+      height: 80px;
+      position: relative;
+      margin-top: 10px;
+      margin-left: 10px;
+      transition: transform 1s;
+      border:1px solid black;
+      border-radius:10px;
+      display: inline-block;
+      transform-style: preserve-3d;
+    }
+    .tehai-card7 {
+      width: 60px;
+      height: 80px;
+      position: relative;
+      margin-top: 10px;
+      margin-left: 10px;
+      transition: transform 1s;
+      border:1px solid black;
+      border-radius:10px;
+      display: inline-block;
+      transform-style: preserve-3d;
+    }
+    .tehai-card8 {
+      width: 60px;
+      height: 80px;
+      position: relative;
+      margin-top: 10px;
+      margin-left: 10px;
+      transition: transform 1s;
+      border:1px solid black;
+      border-radius:10px;
+      display: inline-block;
+      transform-style: preserve-3d;
+    }
+    .tehai-card9 {
+      width: 60px;
+      height: 80px;
+      position: relative;
+      margin-top: 10px;
+      margin-left: 10px;
+      transition: transform 1s;
+      border:1px solid black;
+      border-radius:10px;
+      display: inline-block;
+      transform-style: preserve-3d;
+    }
+    .tehai-card10 {
+      width: 60px;
+      height: 80px;
+      position: relative;
+      margin-top: 10px;
+      margin-left: 10px;
+      transition: transform 1s;
+      border:1px solid black;
+      border-radius:10px;
+      display: inline-block;
+      transform-style: preserve-3d;
+    }
+    .tehai-card11 {
+      width: 60px;
+      height: 80px;
+      position: relative;
+      margin-top: 10px;
+      margin-left: 10px;
+      transition: transform 1s;
+      border:1px solid black;
+      border-radius:10px;
+      display: inline-block;
+      transform-style: preserve-3d;
+    }
+    .tehai-card12 {
+      width: 60px;
+      height: 80px;
+      position: relative;
+      margin-top: 10px;
+      margin-left: 10px;
+      transition: transform 1s;
+      border:1px solid black;
+      border-radius:10px;
+      display: inline-block;
+      transform-style: preserve-3d;
+    }
+    .tehai-card13 {
+      width: 60px;
+      height: 80px;
+      position: relative;
+      margin-top: 10px;
+      margin-left: 10px;
+      transition: transform 1s;
+      border:1px solid black;
+      border-radius:10px;
+      display: inline-block;
+      transform-style: preserve-3d;
+    }
+    .tehai-card14 {
+      width: 60px;
+      height: 80px;
+      position: relative;
+      margin-top: 10px;
+      margin-right: 10px;
+      transition: transform 1s;
+      border:1px solid black;
+      border-radius:10px;
+      display: inline-block;
+      float: right;
+      transform-style: preserve-3d;
+    }
+
+    #joutai-box{
+      width: 7%;
+      height: 300px;
+      position: absolute;
+      bottom: 200px;
+      right: 0px;
+      /* background: rgb(255, 166, 0); */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .kakunin{
+    width: 80%;
+    height: 50px;
+    background: white;
+    font-weight: bold;
+    font-size: 30px;
+    text-align: center;
+    border-radius: 10px;
+    }
+
+    .sute{
+      width:80%;
+    height: 50px;
+    background: white;
+    font-weight: bold;
+    font-size: 30px;
+    text-align: center;
+    border-radius: 10px;
+    }
+
+    .ron{
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      font-size: 50px;
+      color: white;
+      background: red;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="game-field">
+    <div id="game"></div>
+    <div id="tehai">
+      <div class="tehai-card1">
+        <div class="card-front"></div>
+        <div class="card-back"></div>
+      </div>
+      <div class="tehai-card2">
+        <div class="card-front"></div>
+        <div class="card-back"></div>
+      </div>
+      <div class="tehai-card3">
+        <div class="card-front"></div>
+        <div class="card-back"></div>
+      </div>
+      <div class="tehai-card4">
+        <div class="card-front"></div>
+        <div class="card-back"></div>
+      </div>
+      <div class="tehai-card5">
+        <div class="card-front"></div>
+        <div class="card-back"></div>
+      </div>
+      <div class="tehai-card6">
+        <div class="card-front"></div>
+        <div class="card-back"></div>
+      </div>
+      <div class="tehai-card7">
+        <div class="card-front"></div>
+        <div class="card-back"></div>
+      </div>
+      <div class="tehai-card8">
+        <div class="card-front"></div>
+        <div class="card-back"></div>
+      </div>
+      <div class="tehai-card9">
+        <div class="card-front"></div>
+        <div class="card-back"></div>
+      </div>
+      <div class="tehai-card10">
+        <div class="card-front"></div>
+        <div class="card-back"></div>
+      </div>
+      <div class="tehai-card11">
+        <div class="card-front"></div>
+        <div class="card-back"></div>
+      </div>
+      <div class="tehai-card12">
+        <div class="card-front"></div>
+        <div class="card-back"></div>
+      </div>
+      <div class="tehai-card13">
+        <div class="card-front"></div>
+        <div class="card-back"></div>
+      </div>
+      <div class="tehai-card14">
+        <div class="card-front"></div>
+        <div class="card-back"></div>
+      </div>
+    </div>
+    
+    <div id="joutai-box">
+      <input class="ron" type="button" value="和">
+      <input class="kakunin" type="button" value="確認">
+      <input class="sute" type="button" value="捨て">
+    </div>
+  </div>
+
+  <script src="./jquery-3.6.0.min.js"></script>
+  <script src="./sweetalert2.all.min.js"></script>
+  <script>
+    // 產生136張卡片
+    for (let i = 0; i < 136; i++) {
+      $('#game').append(`
+      <div class="card1">
+    <div class="card-front"></div>
+    <div class="card-back"></div>
+  </div>
+  `)
+    }
+    
+    for (let i = 0; i <136; i++) {
+      const num1 = i%34 +1
+      $('.card1').eq(i).find('.card-front').css('background-image', `url(./ma-jan/${num1}.png)`)
+      $('.card1').eq(i).attr('data-card1', num1)
+    
+      const target = Math.round(Math.random() * 12)
+      $('.card1').eq(target).insertAfter($('.card1').eq(i))
+      }
+      
+    // 翻牌
+    $('#game').on('click','.card1',function(){
+      if(!$('.tehai-card14').hasClass('card-open')){
+        $(this).addClass('card-open')
+        $('.tehai-card14').addClass('card-open')
+        $('.tehai-card14').attr('data-card1',$(this).data("card1"))
+        $('.tehai-card14 .card-front').css('background-image', `url(./ma-jan/${$(this).data("card1")}.png)`)
+      }
+    })
+
+    $('.sute').on('click',function(){
+          $('#game .card-open').fadeOut()
+          $('.tehai-card14').removeClass('card-open').removeAttr('data-card1')
+          $('.card1').removeClass('card-open')
+            })
+
+    $('.kakunin').on('click',function(){ 
+      if (!$('.tehai-card1').hasClass('card-open') && $('.tehai-card14').hasClass('card-open')){
+          $('.tehai-card1').addClass('card-open')
+          $('.tehai-card1').attr('data-card1',$('.tehai-card14').data("card1"))
+          $('.tehai-card1 .card-front').css('background-image', `url(./ma-jan/${$('.tehai-card14').data("card1")}.png)`)
+          $('#game .card-open').fadeOut()
+          $('.tehai-card14').removeClass('card-open').removeAttr('data-card1').removeData('card1')
+          $('.card1').removeClass('card-open')
+          console.log($('.tehai-card14').data("card1"))
+          }
+          
+          if (!$('.tehai-card2').hasClass('card-open') && $('.tehai-card14').hasClass('card-open')){
+            $('.tehai-card2').addClass('card-open')
+            $('.tehai-card2').attr('data-card1',$('.tehai-card14').data("card1"))
+            $('.tehai-card2 .card-front').css('background-image', `url(./ma-jan/${$('.tehai-card14').data("card1")}.png)`)
+            $('#game .card-open').fadeOut()
+            $('.tehai-card14').removeClass('card-open').removeAttr('data-card1').removeData('card1')
+            $('.card1').removeClass('card-open')
+            console.log($('.tehai-card14').data("card1"))
+            }
+            
+            if (!$('.tehai-card3').hasClass('card-open') && $('.tehai-card14').hasClass('card-open')){
+            $('.tehai-card3').addClass('card-open')
+            $('.tehai-card3').attr('data-card1',$('.tehai-card14').data("card1"))
+            $('.tehai-card3 .card-front').css('background-image', `url(./ma-jan/${$('.tehai-card14').data("card1")}.png)`)
+            $('#game .card-open').fadeOut()
+            $('.tehai-card14').removeClass('card-open').removeAttr('data-card1').removeData('card1')
+            $('.card1').removeClass('card-open')
+            console.log($('.tehai-card14').data("card1"))
+            }
+            
+            if (!$('.tehai-card4').hasClass('card-open') && $('.tehai-card14').hasClass('card-open')){
+            $('.tehai-card4').addClass('card-open')
+            $('.tehai-card4').attr('data-card1',$('.tehai-card14').data("card1"))
+            $('.tehai-card4 .card-front').css('background-image', `url(./ma-jan/${$('.tehai-card14').data("card1")}.png)`)
+            $('#game .card-open').fadeOut()
+            $('.tehai-card14').removeClass('card-open').removeAttr('data-card1').removeData('card1')
+            $('.card1').removeClass('card-open')
+            console.log($('.tehai-card14').data("card1"))
+            }
+            
+            if (!$('.tehai-card5').hasClass('card-open') && $('.tehai-card14').hasClass('card-open')){
+            $('.tehai-card5').addClass('card-open')
+            $('.tehai-card5').attr('data-card1',$('.tehai-card14').data("card1"))
+            $('.tehai-card5 .card-front').css('background-image', `url(./ma-jan/${$('.tehai-card14').data("card1")}.png)`)
+            $('#game .card-open').fadeOut()
+            $('.tehai-card14').removeClass('card-open').removeAttr('data-card1').removeData('card1')
+            $('.card1').removeClass('card-open')
+            console.log($('.tehai-card14').data("card1"))
+            }
+            
+            if (!$('.tehai-card6').hasClass('card-open') && $('.tehai-card14').hasClass('card-open')){
+            $('.tehai-card6').addClass('card-open')
+            $('.tehai-card6').attr('data-card1',$('.tehai-card14').data("card1"))
+            $('.tehai-card6 .card-front').css('background-image', `url(./ma-jan/${$('.tehai-card14').data("card1")}.png)`)
+            $('#game .card-open').fadeOut()
+            $('.tehai-card14').removeClass('card-open').removeAttr('data-card1').removeData('card1')
+            $('.card1').removeClass('card-open')
+            console.log($('.tehai-card14').data("card1"))
+            }
+            
+            if (!$('.tehai-card7').hasClass('card-open') && $('.tehai-card14').hasClass('card-open')){
+            $('.tehai-card7').addClass('card-open')
+            $('.tehai-card7').attr('data-card1',$('.tehai-card14').data("card1"))
+            $('.tehai-card7 .card-front').css('background-image', `url(./ma-jan/${$('.tehai-card14').data("card1")}.png)`)
+            $('#game .card-open').fadeOut()
+            $('.tehai-card14').removeClass('card-open').removeAttr('data-card1').removeData('card1')
+            $('.card1').removeClass('card-open')
+            console.log($('.tehai-card14').data("card1"))
+            }
+            
+            if (!$('.tehai-card8').hasClass('card-open') && $('.tehai-card14').hasClass('card-open')){
+            $('.tehai-card8').addClass('card-open')
+            $('.tehai-card8').attr('data-card1',$('.tehai-card14').data("card1"))
+            $('.tehai-card8 .card-front').css('background-image', `url(./ma-jan/${$('.tehai-card14').data("card1")}.png)`)
+            $('#game .card-open').fadeOut()
+            $('.tehai-card14').removeClass('card-open').removeAttr('data-card1').removeData('card1')
+            $('.card1').removeClass('card-open')
+            console.log($('.tehai-card14').data("card1"))
+            }
+            
+            if (!$('.tehai-card9').hasClass('card-open') && $('.tehai-card14').hasClass('card-open')){
+            $('.tehai-card9').addClass('card-open')
+            $('.tehai-card9').attr('data-card1',$('.tehai-card14').data("card1"))
+            $('.tehai-card9 .card-front').css('background-image', `url(./ma-jan/${$('.tehai-card14').data("card1")}.png)`)
+            $('#game .card-open').fadeOut()
+            $('.tehai-card14').removeClass('card-open').removeAttr('data-card1').removeData('card1')
+            $('.card1').removeClass('card-open')
+            console.log($('.tehai-card14').data("card1"))
+            }
+            
+            if (!$('.tehai-card10').hasClass('card-open') && $('.tehai-card14').hasClass('card-open')){
+            $('.tehai-card10').addClass('card-open')
+            $('.tehai-card10').attr('data-card1',$('.tehai-card14').data("card1"))
+            $('.tehai-card10 .card-front').css('background-image', `url(./ma-jan/${$('.tehai-card14').data("card1")}.png)`)
+            $('#game .card-open').fadeOut()
+            $('.tehai-card14').removeClass('card-open').removeAttr('data-card1').removeData('card1')
+            $('.card1').removeClass('card-open')
+            console.log($('.tehai-card14').data("card1"))
+            }
+            
+            if (!$('.tehai-card11').hasClass('card-open') && $('.tehai-card14').hasClass('card-open')){
+            $('.tehai-card11').addClass('card-open')
+            $('.tehai-card11').attr('data-card1',$('.tehai-card14').data("card1"))
+            $('.tehai-card11 .card-front').css('background-image', `url(./ma-jan/${$('.tehai-card14').data("card1")}.png)`)
+            $('#game .card-open').fadeOut()
+            $('.tehai-card14').removeClass('card-open').removeAttr('data-card1').removeData('card1')
+            $('.card1').removeClass('card-open')
+            console.log($('.tehai-card14').data("card1"))
+            }
+            
+            if (!$('.tehai-card12').hasClass('card-open') && $('.tehai-card14').hasClass('card-open')){
+            $('.tehai-card12').addClass('card-open')
+            $('.tehai-card12').attr('data-card1',$('.tehai-card14').data("card1"))
+            $('.tehai-card12 .card-front').css('background-image', `url(./ma-jan/${$('.tehai-card14').data("card1")}.png)`)
+            $('#game .card-open').fadeOut()
+            $('.tehai-card14').removeClass('card-open').removeAttr('data-card1').removeData('card1')
+            $('.card1').removeClass('card-open')
+            console.log($('.tehai-card14').data("card1"))
+            }
+            
+            if (!$('.tehai-card13').hasClass('card-open') && $('.tehai-card14').hasClass('card-open')){
+            $('.tehai-card13').addClass('card-open')
+            $('.tehai-card13').attr('data-card1',$('.tehai-card14').data("card1"))
+            $('.tehai-card13 .card-front').css('background-image', `url(./ma-jan/${$('.tehai-card14').data("card1")}.png)`)
+            $('#game .card-open').fadeOut()
+            $('.tehai-card14').removeClass('card-open').removeAttr('data-card1').removeData('card1')
+            $('.card1').removeClass('card-open')
+            console.log($('.tehai-card14').data("card1"))
+            }
+          })
+
+          $('.ron').on('click',function(){
+            if(
+              $('.tehai-card1'
+              &&'.tehai-card2'
+              &&'.tehai-card3'
+              &&'.tehai-card4'
+              &&'.tehai-card5'
+              &&'.tehai-card6'
+              &&'.tehai-card7'
+              &&'.tehai-card8'
+              &&'.tehai-card9'
+              &&'.tehai-card10'
+              &&'.tehai-card11'
+              &&'.tehai-card12'
+              &&'.tehai-card13'
+              &&'.tehai-card14').hasClass('card-open')
+              // 一到三
+              && $('.tehai-card1').data('card1')===$('.tehai-card2').data('card1')
+              && $('.tehai-card1').data('card1')===$('.tehai-card3').data('card1')
+              // 四到六
+            && $('.tehai-card4').data('card1')===$('.tehai-card5').data('card1')
+            && $('.tehai-card4').data('card1')===$('.tehai-card6').data('card1')
+              // 七到九
+            && $('.tehai-card7').data('card1')===$('.tehai-card8').data('card1')
+            && $('.tehai-card7').data('card1')===$('.tehai-card9').data('card1')
+              // 十到十二
+            && $('.tehai-card10').data('card1')===$('.tehai-card11').data('card1')
+            && $('.tehai-card10').data('card1')===$('.tehai-card12').data('card1')
+              // 十三和十四
+            && $('.tehai-card13').data('card1')===$('.tehai-card14').data('card1')
+            ){
+              Swal.fire({
+                icon: 'success',
+                title: 'ロン！',
+                html:'<p>対々和！２翻！</p><br><a href="./index.html">重新開始</a>'
+            })
+            }
+
+            
+          })
+
+  </script>
+</body>
+
+</html>
