@@ -1,2 +1,2 @@
 # マージャン
-[マージャントイトイ和](https://github.com/AINOI/majong-AINOI/index(openThisFirst).html)
+[マージャントイトイ和](https://ainoi.github.io/majong-AINOI/index(openThisFirst).html)
